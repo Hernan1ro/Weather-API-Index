@@ -54,6 +54,7 @@ function imprimirError(mensaje) {
 function consultarAPI(ciudad, pais) {
   const APIkey = "d81947d3ad0c86d99c906ce384aa4597";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${APIkey}`;
+  Spinnner();
   fetch(url)
     .then((res) => res.json())
     .then((res) => {
@@ -111,4 +112,14 @@ function limpiarHtml() {
   while (resultado.firstChild) {
     resultado.removeChild(resultado.firstChild);
   }
+}
+
+function Spinnner() {
+  limpiarHtml();
+  const divSpinner = document.createElement("div");
+  divSpinner.classList.add("spinner");
+  divSpinner.innerHTML = `
+      <div class="spinner"></div>
+  `;
+  resultado.appendChild(divSpinner);
 }
