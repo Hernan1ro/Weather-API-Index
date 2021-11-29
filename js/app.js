@@ -69,18 +69,37 @@ function consultarAPI(ciudad, pais) {
 
 function imprimirTemperatura(datos) {
   const {
+    name,
     main: { temp, temp_max, temp_min },
   } = datos;
 
   const centigrados = kelvinToCelcius(temp);
+  const tempMax = kelvinToCelcius(temp_max);
+  const tempMin = kelvinToCelcius(temp_min);
+
+  const ciudad = document.createElement("p");
+  ciudad.classList.add("text-2xl");
+  ciudad.innerHTML = `Temperatura en ${name}`;
 
   const actual = document.createElement("p");
   actual.classList.add("font-bold", "text-6xl");
   actual.innerHTML = `${centigrados} &#8451;`;
 
+  const tempmax = document.createElement("p");
+  tempmax.classList.add("text-xl");
+  tempmax.innerHTML = `Temp máxima: ${tempMax} &#8451;`;
+
+  const tempmin = document.createElement("p");
+  tempmin.classList.add("text-xl");
+  tempmin.innerHTML = `Temp mínima: ${tempMin} &#8451;`;
+
   const resultadoDiv = document.createElement("div");
   resultadoDiv.classList.add("text-center", "text-white");
+
+  resultadoDiv.appendChild(ciudad);
   resultadoDiv.appendChild(actual);
+  resultadoDiv.appendChild(tempmax);
+  resultadoDiv.appendChild(tempmin);
   resultado.appendChild(resultadoDiv);
 }
 
